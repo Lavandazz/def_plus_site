@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Сотрудники{% endblock %}
+{% block extra_styles %}
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 10px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<a href="/admin/add_worker" class="add-service-btn">Добавить сотрудника</a>
+ <h1>Список сотрудников</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>О работнике</th>
+                <th>Фото</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for worker in workers %}
+            <tr>
+                <td>{{ worker.name }}</td>
+                <td>{{ worker.surname }}</td>
+                <td>{{ worker.patronymic }}</td>
+                <td>{{ worker.about_worker }}</td>
+                <td><img src="{{ url_for('static', path=worker.photo.replace('static/', '')) }}" alt="Фото работника"></td>
+                <td><form action="/admin/delete_worker/{{ worker.id }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+{% endblock %}

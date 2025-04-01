@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Управление услугами{% endblock %}
+
+{% block extra_styles %}
+    <style>
+        /* Контейнер для услуги, слева текст, справа кнопки */
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Блок с текстовой информацией (название и описание) */
+        .service-info {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        /* Блок с кнопками */
+        .service-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+        }
+
+        /* Стиль для кнопки "Добавить услугу" */
+        .add-service-btn {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .add-service-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Контейнер для всех услуг */
+        .service-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Управление услугами</h1>
+
+        <a href="/admin/add" class="add-service-btn">Добавить услугу</a>
+
+        <div class="service-container">
+            {% for service in services %}
+                <div class="service-item">
+                    <!-- Блок с текстовой информацией (название и описание) -->
+                    <div class="service-info">
+                        <strong>{{ service.title }}</strong><br>
+                        <span>{{ service.description }}</span>
+                    </div>
+                    <!-- Блок с кнопками для редактирования и удаления -->
+                    <div class="service-actions">
+                        <a href="/admin/edit_service/{{ service.id }}" class="btn btn-warning btn-sm">Редактировать</a>
+                        <!-- Форма для удаления -->
+                        <form action="/admin_dashboard/delete/{{ service.id }}" method="post" style="display:inline;">
+                            <input type="hidden" name="service_id" value="{{ service.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

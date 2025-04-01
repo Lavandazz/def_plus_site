@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Боковое меню -->
+        <nav class="col-md-3">
+            <div class="list-group">
+                <a href="/admin/services" class="list-group-item list-group-item-action">Услуги</a>
+                <a href="/admin/get_workers" class="list-group-item list-group-item-action">Сотрудники</a>
+                <a href="/admin/contacts" class="list-group-item list-group-item-action">Контакты</a>
+                <a href="/admin/faq" class="list-group-item list-group-item-action">Частые вопросы</a>
+            </div>
+        </nav>
+
+        <nav class="col-md-3">
+            <div class="list-group">
+                <a href="/" class="list-group-item list-group-item-action">Главная страница</a>
+                <a href="/services" class="list-group-item list-group-item-action">Услуги</a>
+                <a href="/about" class="list-group-item list-group-item-action">О компании</a>
+                <a href="/contacts" class="list-group-item list-group-item-action">Контакты</a>
+            </div>
+        </nav>
+
+        <!-- Основной контент -->
+        <main class="col-md-9">
+            <h1>Админ Панель</h1>
+            <p>Выберите раздел для редактирования.</p>
+        </main>
+    </div>
+</div>
+{% endblock %}

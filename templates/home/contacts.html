@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1 class="title">{{ title }}</h1>
+
+    <div class="contacts-container">
+            <ul>
+                <li><h3>+7 (977) 803-48-97</h3></li>
+                <li><h3>+7 (495) 518-63-56</h3></li>
+            </ul>
+    </div>
+    <div class="contacts-container">
+        {% for address in addresses %}
+        <div class="contact-item fade-in">
+            <div class="about-content">
+                <p class="contact-address">Адрес: {{ address.address }}</p>
+            </div>
+
+            <div class="contact-address">
+                <a href="https://yandex.ru/maps/?text={{ address.address }}" target="_blank">
+                    <button class="map-button">Открыть на карте</button>
+                </a>
+                <iframe
+                    src="https://yandex.ru/map-widget/v1/?text={{ address.address }}"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

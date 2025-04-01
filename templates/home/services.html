@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <main class="service-container">
+        {% for service in services %}
+        <div class="service-item fade-in {% if loop.index % 2 == 0 %}reverse{% endif %}">
+            <div class="service-info">
+                <h2>{{ service.title }}</h2>
+                <p>{{ service.description }}</p>
+            </div>
+            <div class="service-image">
+                <img src="/static/images/service{{ loop.index }}.jpg" alt="Услуга">
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3 class="text-center mb-3">Редактирование услуги</h3>
+
+    <form action="/admin/save_edit_service/{{ service.id }}" method="post" class="border p-4 rounded shadow bg-light">
+
+        <!-- Поле для названия услуги -->
+        <div class="mb-3" style="height: 70px; font-size: 18px;">
+            <label for="title" class="form-label">Название услуги</label>
+            <input type="text" id="title" name="title" value="{{ service.title }}" class="form-control" required>
+        </div>
+
+        <!-- Поле для редактирования описания -->
+        <div id="editor" style="height: 20px; font-size: 18px;"></div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание услуги</label>
+            <textarea id="description" name="description" class="form-control" rows="8" style="resize: vertical; font-size: 18px;" required>{{ service.description }}</textarea>
+        </div>
+            <!-- Кнопка сохранения -->
+        <button type="submit" class="btn btn-success w-20">Сохранить изменения</button>
+
+        <!-- Кнопка отмены -->
+        <a href="/admin/services" class="btn btn-info w-20">Отмена</a>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Название компании{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
+    <!-- Подключение анимаций -->
+
+    <script src="/static/js/scrollEffect.js" defer></script>
+    <script src="/static/js/swiper.js" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/about">Компания</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="logo-container">
+
+            <img src="https://x-lines.ru/letters/i/cyrillicscript/0813/09093f/34/0/4nmpbqgtomeaaegos8emmwfzrdemjwf64n77bc6oz5emr.png">
+
+        </div>
+
+        <div class="company-name">
+            <h2>+7 (977) 803-48-97</h2>
+            <h2>+7 (495) 518-63-56</h2>
+        </div>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+    <!-- Подвал -->
+    <footer class="footer">
+        {% block footer %}
+            <p>© 2025 Дефендер плюс. Все права защищены.</p>
+            <p>Дизайн и разработка: <a href="https://lavandazz.com" target="_blank">Lavandazz</a></p>
+        {% endblock footer %}
+    </footer>
+
+</body>
+</html>
