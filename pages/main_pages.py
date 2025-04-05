@@ -3,7 +3,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from database.contacts import contact_dict
 from database.models_db import ServiceTextModel, WorkerModel
-# from database.about import workers
+from database.contacts import key_features, the_question_why_are_we, list_of_question_why_are_we
+
 router = APIRouter()
 jinja_env = Jinja2Templates(directory="templates/home")
 
@@ -14,14 +15,19 @@ async def home(request: Request):
     Главная страница
     возвращает HTML-код главной страницы.
     """
-    return jinja_env.TemplateResponse("index.html", {"request": request, "title": "Главная"})
+    return jinja_env.TemplateResponse("index.html", {"request": request,
+                                                     "title": "Главная",
+                                                     "key_features": key_features,
+                                                     "list_of_question_why_are_we": list_of_question_why_are_we,
+                                                     "the_question_why_are_we": the_question_why_are_we})
 
 
 @router.get("/about", response_class=HTMLResponse, tags=["home"])
 async def about(request: Request):
     """ Страница о нас """
     workers = await WorkerModel.all()
-    return jinja_env.TemplateResponse("about.html", {"request": request, "title": "О компании",
+    return jinja_env.TemplateResponse("about.html", {"request": request,
+                                                     "title": "О компании",
                                                      "workers": workers})
 
 
@@ -29,15 +35,18 @@ async def about(request: Request):
 async def services(request: Request):
     """ Страница новостей и услуг"""
     services = await ServiceTextModel.all()
+    title = 'Услуга банкротство, банкротство юридические услуги,  стоимость банкротство физ лица в Москве'
     return jinja_env.TemplateResponse("services.html", {"request": request,
+                                                        "title": title,
                                                         "services": services})
 
 
 @router.get("/contacts", response_class=HTMLResponse, tags=["home"])
 async def contacts(request: Request):
     """ Страница контактов """
-    title = "Контакты ООО 'Дефендер плюс'"
-    addresses = contact_dict
+    contacts_def_plus = 'Контакты ООО "Дефендер плюс"'
+    title = "Контакты"
     return jinja_env.TemplateResponse("contacts.html", {"request": request,
-                                                        "addresses": addresses,
-                                                        "title": title})
+                                                        "contact_dict": contact_dict,
+                                                        "title": title,
+                                                        "contacts_def_plus": contacts_def_plus})

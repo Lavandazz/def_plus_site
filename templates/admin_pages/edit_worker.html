@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center mb-4">Редактирование данных о сотруднике</h1>
+
+<form action="/admin/save_edit_worker/{{ worker.id }}" method="post" class="border p-4 rounded shadow bg-light"
+    enctype="multipart/form-data">
+
+    <div class="mb-3" style="height: 70px; font-size: 18px;">
+        <label for="name" class="form-label">Имя</label>
+        <input type="text" id="name" name="name" value="{{ worker.name }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="surname" class="form-label">Фамилия</label>
+        <input type="text" id="surname" name="surname" value="{{ worker.surname }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="patronymic" class="form-label">Отчество</label>
+        <input type="text" id="patronymic" name="patronymic" value="{{ worker.patronymic }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="about_worker" class="form-label">Описание</label>
+        <textarea id="about_worker" name="about_worker" class="form-control" rows="6" style="resize: vertical;" required>
+            {{ worker.about_worker }}
+        </textarea>
+    </div>
+
+        <!--  КНОПКА ДЛЯ ФОТО -->
+    <div class="mb-3">
+
+        <label for="photo">Фото:</label>
+        <input type="file" id="photo" name="photo" accept="image/*">
+    </div>
+
+    <button type="submit" class="btn btn-primary w-20">Сохранить изменения</button>
+    <a href="/admin/get_workers" class="btn btn-info w-20">Отмена</a>
+</form>
+{% endblock %}

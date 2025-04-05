@@ -1,12 +1,50 @@
 {% extends "base.html" %}
-{% block title %}Главная{% endblock %}
+{% block title %}Банкротство физических лиц, юридические услуги по банкротству{% endblock %}
 {% block content %}
 
-<img src="https://x-lines.ru/letters/i/cyrillicscript/4265/000000/44/0/4nqpdn3y4n97dygoszemfwcy4napdnqosdemmwfhrdemjwf64n77bc6ozyopbcty4n3pbxsos9em3wf64n5pbxqoz5eadwcn4nhnn.png">
+    <div class="hello-message-container">
+        <img src="/static/logo/logol1.png" alt="Лого?" class="hello-image">
 
-<li><img src="https://x-lines.ru/letters/i/cyrillicscript/0819/090948/28/0/4nmpbqgtomeaaegos8emmwfzrdemjwf64n77bc6oz5emr.png"></li>
-<li><img src="https://x-lines.ru/letters/i/cyrillicscript/0280/0a0a43/30/0/4nmpbqgtomeaaegos8emmwfzrdemjwf64n77bc6oz5emr.png"></li>
-<li><img src="https://x-lines.ru/letters/i/cyrillicscript/0637/0a0a47/36/0/4nmpbqgtomeaaegos8emmwfzrdemjwf64n77bc6oz5emr.png"></li>
-<li><img src="https://x-lines.ru/letters/i/cyrillicscript/0813/09093f/34/0/4nmpbqgtomeaaegos8emmwfzrdemjwf64n77bc6oz5emr.png"></li>
+    </div>
+
+    <div class="stats-container">
+        {% for title, value in key_features.items() %}
+        <div class="stat-item fade-in-item-left">
+            <div class="stat-title">{{ title }}</div>
+            <div class="stat-value">{{ value }}</div>
+            <img src="/static/images/index_images/index{{ loop.index }}.png" alt="лого" class="stat-image">
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <br>
+
+    <div class="section-spacer">
+        <div class="hero-container fade-in-delay">
+            <img src="/static/images/index_images/why.png" alt="Почему мы?" class="hero-image">
+        </div>
+    </div>
+
+    <div class="section-spacer">
+        <div class="hero-container fade-in-delay">
+            <ul class="hero-text">
+                {% for answer in list_of_question_why_are_we %}
+                <li>{{ answer }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+    </div>
+
+    <div class="stats-container">
+        {% for answer, value in the_question_why_are_we.items() %}
+        <div class="stat-item fade-in-item-right">
+            <div class="stat-title">{{ answer }}</div>
+            <div class="stat-value">{{ value }}</div>
+            <img src="/static/images/index_images/index_down{{ loop.index }}.png" alt="лого" class="stat-image">
+        </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

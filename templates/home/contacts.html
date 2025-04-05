@@ -2,7 +2,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="contacts_def_plus">{{ contacts_def_plus }}</h1>
 
     <div class="contacts-container">
             <ul>
@@ -11,18 +11,21 @@
             </ul>
     </div>
     <div class="contacts-container">
-        {% for address in addresses %}
+        <h2>Как к нам проехать</h2>
+    </div>
+    <div class="contacts-container">
+        {% for status, address in contact_dict.items() %}
         <div class="contact-item fade-in">
             <div class="about-content">
-                <p class="contact-address">Адрес: {{ address.address }}</p>
+                <p class="contact-address">{{ status }} адрес: {{ address }}</p>
             </div>
 
             <div class="contact-address">
-                <a href="https://yandex.ru/maps/?text={{ address.address }}" target="_blank">
+                <a href="https://yandex.ru/maps/?text={{ address }}" target="_blank">
                     <button class="map-button">Открыть на карте</button>
                 </a>
                 <iframe
-                    src="https://yandex.ru/map-widget/v1/?text={{ address.address }}"
+                    src="https://yandex.ru/map-widget/v1/?text={{ address }}"
                     frameborder="0"
                     allowfullscreen>
                 </iframe>

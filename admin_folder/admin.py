@@ -115,7 +115,6 @@ async def admin_dashboard_edit(service_id: int, title: str = Form(...), descript
     service.title = title
     service.description = description
     await service.save()
-    # services = await ServiceTextModel.all()  # Получаем все услуги из базы данных
     return RedirectResponse(url='/admin/services', status_code=303)
 
 

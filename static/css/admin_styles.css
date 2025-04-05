@@ -1,0 +1,57 @@
+/* Стили для заголовка в админ панели */
+.admin-header {
+    background-color: #6495ED; /* Голубой фон */
+    color: white; /* Белый текст */
+    padding: 15px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.form-control, .btn {
+    font-size: 18px;
+    padding: 12px;
+}
+
+.form-label {
+    font-size: 18px;
+}
+
+.form-control:focus {
+    border-color: #00B0FF;
+    box-shadow: 0 0 5px rgba(0, 176, 255, 0.5);
+}
+
+.btn-primary {
+    background-color: #00B0FF;
+    border: none;
+    font-size: 18px;
+}
+
+.btn-primary:hover {
+    background-color: #0095D9;
+}
+
+/* Обычное состояние кнопок (ссылок) */
+.list-group-item {
+    color: #495057; /* Темный цвет текста */
+    background-color: transparent; /* Прозрачный фон */
+    border: 1px solid #ddd; /* Легкая граница */
+    transition: background-color 0.3s, color 0.3s; /* Плавное изменение цвета */
+}
+
+/* Состояние при наведении мыши */
+.list-group-item:hover {
+    background-color: #a6bada; /* Голубой фон */
+    color: black; /* Белый цвет текста */
+    cursor: pointer; /* Указатель мыши при наведении */
+}
+
+/* Для активной кнопки (когда она выбрана) */
+.list-group-item.active {
+    background-color: #007bff; /* Голубой фон */
+    color: white; /* Белый цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+}

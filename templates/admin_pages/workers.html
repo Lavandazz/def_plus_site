@@ -21,6 +21,15 @@
         th {
             background-color: #f2f2f2;
         }
+               /* Стиль для столбца "О работнике" */
+        td:nth-child(4) {
+            width: 40%;
+            min-width: 300px;
+            max-width: 500px;
+            word-wrap: break-word;
+            text-align: left; /* можно выровнять текст по левому краю */
+        }
+
         img {
             max-width: 120px;
             max-height: 120px;
@@ -36,6 +45,7 @@
             <tr>
                 <th>Имя</th>
                 <th>Фамилия</th>
+                <th>Отчество</th>
                 <th>О работнике</th>
                 <th>Фото</th>
             </tr>
@@ -48,6 +58,10 @@
                 <td>{{ worker.patronymic }}</td>
                 <td>{{ worker.about_worker }}</td>
                 <td><img src="{{ url_for('static', path=worker.photo.replace('static/', '')) }}" alt="Фото работника"></td>
+                <td>
+                    <a href="/admin/edit_worker/{{ worker.id }}" class="btn btn-warning btn-sm">Редактировать</a>
+
+                </td>
                 <td><form action="/admin/delete_worker/{{ worker.id }}" method="post" style="display:inline;">
                     <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                 </form></td>

@@ -5,5 +5,12 @@ venv/
 .env
 
 database
-migrations
-static
+
+static/workers_photo
+static/logo
+static/images
+
+for_test.py
+
+*.pyc
+__pycache__/

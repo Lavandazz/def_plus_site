@@ -1,0 +1,623 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Плавное появление */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* плавное появление */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Название компании + логотип */
+.logo-container {
+    display: flex;
+    /*justify-content: center; !* Центрируем по горизонтали *!*/
+    align-items: center; /* Центрируем по вертикали */
+    position: absolute;
+    left:47%;
+    transform: translateX(-50%); /* Центрирует логотип */
+    height: 100%; /* Задаем высоту контейнера, равную высоте шапки */
+}
+
+/* Телефоны компании справа */
+.company-tel {
+    flex-grow: 1; /* Позволяет названию занимать пространство */
+    margin-right: 5vw;
+    text-align: right;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/*.logo {*/
+/*    height: 10vw;*/
+/*    width: auto;*/
+/*}*/
+
+/* Меню навигации */
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav ul li {
+    display: inline;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav a:hover {
+    color: #007BFF;
+}
+
+/*!* Основной фон с градиентом *!*/
+/* Шапка */
+.header {
+    background-color: #eee9e9;
+    color: #1f0101;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Навигация слева, логотип справа */
+    gap: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Закрепление шапки сверху */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Чтобы было поверх контента */
+}
+/*!* Убираем отступы и поля у всего документа *!*/
+/*html, body {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    min-height: 100vh; !* Гарантирует, что страница будет чуть больше высоты экрана *!*/
+/*}*/
+/*html {*/
+/*    height: 100%;*/
+/*    background: #F3FDFAAD; !* Цвет, который должен быть "под" градиентом *!*/
+/*    overflow-y: scroll; !* Всегда показывает скроллбар *!*/
+/*}*/
+
+/*body {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    padding-top: 80px !important; !* Жёстко задаём отступ для шапки *!*/
+/*    font-family: Arial, sans-serif;*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+
+/*    !* Градиент теперь покрывает весь контент *!*/
+/*    background: linear-gradient(to bottom, #fcfdfc 0%, #fcfdfc 50%, #F3FDFAAD 100%);*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: 100% auto;*/
+/*}*/
+/* Базовые стили документа */
+html {
+    height: 90%;
+    overflow-y: scroll; /* Постоянный скроллбар только здесь */
+    background: #F3FDFAAD; /* Фоновый цвет под градиентом */
+}
+
+body {
+    /* Сброс стандартных отступов */
+    margin: 0;
+    padding: 80px 0 0 0; /* Отступ сверху для шапки */
+
+    /* Основные параметры */
+    min-height: 100vh;
+    width: 100%;
+    font-family: Arial, sans-serif;
+
+    /* Флекс-контейнер */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Градиентный фон */
+    background: linear-gradient(to bottom, #fcfdfc 0%, #fcfdfc 50%, #F3FDFAAD 100%);
+    background-attachment: fixed; /* Фиксируем градиент */
+}
+.content {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1650px;
+    padding: 2cm;
+    box-sizing: border-box;
+}
+
+/* Нижняя приписка */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0; /* Важно: прижимаем к левому краю */
+    width: 100%;
+    color: black;
+    padding: 4px 0; /* Отступы только сверху/снизу */
+    text-align: center;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Тень сверху */
+    background-color: rgba(238, 233, 233, 0.4);
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+}
+
+/* Общие стили для всех страниц */
+.main-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 30px auto; /* Уменьшаем до 30px для компенсации */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 20px; /* Дополнительный отступ */
+}
+/* Ширина для мобильного устройства*/
+@media (max-width: 768px) {
+    .content {
+        padding: 1cm 5%; /* Меньшие отступы */
+        max-width: 100%; /* На всю ширину */
+    }
+}
+
+/* Стили для страницы services*/
+.service-container {
+    composes: main-container; /* Если используете CSS-модули */
+    margin-top: 0; /* Убираем дублирующий отступ */
+
+}
+/* Стиль для каждой отдельной услуги */
+.service-item {
+    display: flex; /* Включаем flex для этого блока */
+    align-items: center; /* Выравниваем дочерние элементы по центру вертикально */
+    justify-content: space-between; /* Распределяем пространство между элементами */
+    opacity: 0; /* Начальная прозрачность для анимации */
+    transform: translateY(50px); /* Начальное положение для анимации */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Параметры анимации */
+    padding: 30px; /* Внутренние отступы */
+    border-radius: 20px; /* Закруглённые углы */
+    background: rgba(255, 255, 255, 0.95); /* Полупрозрачный белый фон */
+    box-shadow: 0 10px 30px rgb(166, 186, 218); /* Тень */
+    backdrop-filter: blur(10px); /* Размытие фона */
+    margin-bottom: 20px; /* расстояние между элементами */
+}
+
+/* Чётные элементы услуг - зеркально разворачиваем */
+.service-item:nth-child(even) {
+    flex-direction: row-reverse; /* Меняем порядок flex-элементов */
+}
+
+/* Стиль для текстовой части услуги */
+.service-info {
+    width: 50%; /* Занимает 50% ширины родителя */
+    padding: 20px; /* Внутренние отступы */
+    color: #333; /* Цвет текста */
+    font-size: 18px; /* Размер шрифта */
+    line-height: 1.5; /* Межстрочный интервал */
+}
+
+/* Изображения */
+.service-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 1px;
+}
+
+/* Классы для анимации */
+.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+/* Размытые края картинок */
+.service-image {
+    position: relative;
+    display: inline-block;
+}
+
+.service-image::before {
+    content: "";
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    background: inherit;
+    filter: blur(20px); /* Размытие границ */
+    z-index: -1;
+    border-radius: 30px;
+}
+
+/* Стили для страницы contacts */
+.contacts-container {
+    composes: main-container; /* Если используете CSS-модули */
+    grid-template-columns: repeat(2, 1fr); /* Два столбца */
+    display: grid;
+    gap: 40px; /* Отступ между столбцами */
+    margin: 50px auto;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column; /* Ставим адрес сверху, карту снизу */
+    align-items: center;
+    text-align: center;
+    padding: 70px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgb(166, 186, 218);
+    /*backdrop-filter: blur(10px);*/
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.contact-address {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.map-button {
+    background-color: #6791bb;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.map-button:hover {
+    background-color: #67a5f5;
+}
+
+.contact-item iframe {
+    width: 100%;
+    height: 600px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Стили для страницы About */
+.service-slider {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Стили для контейнера карусели */
+.swiper {
+    display: flex;
+    justify-content: center; /* Центрируем элементы по горизонтали */
+    align-items: center; /* Центрируем элементы по вертикали */
+    width: 100%; /* Ширина на весь экран */
+    height: 100%; /* Высота на весь экран */
+}
+
+/* Стили для слайдов (работников) */
+.swiper-slide {
+    display: flex;
+    justify-content: center; /* Центрируем каждый слайд */
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    width: 400px; /* Можешь изменить на нужный тебе размер */
+    height: 400px; /* Также настрой на подходящий размер */
+    box-sizing: border-box;
+}
+
+/* Размытие по краям */
+.swiper-slide:not(.swiper-slide-active) {
+    transform: scale(0.85);
+    filter: blur(3px);
+}
+
+.worker-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Стрелки */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    background: none;
+    border: none;
+    width: auto;
+    height: auto;
+}
+
+/* Контейнер для about */
+.about-container{
+    composes: main-container; /* Если используете CSS-модули */
+    margin-top: 0;
+    /*gap: 30px; !* ← Аналогичное свойство для .about-item *!*/
+}
+
+/* Элемент about */
+.about-item {
+    margin-bottom: 20px; /* расстояние между элементами */
+    display: flex;
+    flex-direction: column; /* Всегда колонка (не шахматы) */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);  /* FFFFFF33 */
+    box-shadow: 0 10px 30px rgb(166, 186, 218); /* 00000019 */
+    backdrop-filter: blur(10px);
+}
+
+.about-item:last-child {
+  margin-bottom: 0; /* убираем отступ у последнего */
+}
+
+/* Текстовая часть about */
+.about-content {
+    width: 100%; /* На всю ширину (не 50% как в services) */
+    padding: 20px;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left; /* Выравнивание по левому краю */
+}
+
+/* Стиль для отображения информации о сотрудниках */
+.about-info {
+    width: 60%;
+    padding: 20px;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 auto; /* Центрирует блок */
+    text-align: center; /* Выравнивает текст */
+}
+
+.service-block{
+    text-align: left;
+    width: 90%;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 auto; /* Центрирует блок */
+    padding-top: 60px; /* Отступ вниз на высоту .header */
+}
+
+/* Стили для главной страницы index */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 50px 0;
+}
+
+.stat-item {
+    width: 30%;
+    min-width: 250px; /* Минимальная ширина для предотвращения сжатия */
+    display: grid;
+    grid-template-rows: auto auto 1fr; /* Три строки: title, value, image */
+    height: 280px;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-out;
+    align-items: center; /* Центрируем содержимое по вертикали */
+    justify-items: center; /* Центрируем содержимое по горизонтали */
+    gap: 15px; /* Равномерные отступы между элементами */
+}
+
+.stat-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    display: flex;
+    align-self: end; /* Прижимаем к верхней границе ячейки */
+    align-items: center;
+    min-height: 3em; /* Фиксируем высоту под 2 строки */
+}
+
+.stat-value {
+    font-size: 30px;
+    color: #6791bb;
+    font-weight: 700;
+    align-self: start; /* Прижимаем к нижней границе ячейки */
+    margin-top: 0; /* Убираем лишние отступы */
+    line-height: 1.2; /* Фиксируем межстрочный интервал */
+    min-height: 2em; /* Фиксируем высоту под 2 строки */
+}
+
+.stat-image {
+    /*width: 120px;*/
+    /*height: 120px;*/
+    object-fit: contain;
+    align-self: center; /* Центрируем изображение */
+    margin-top: auto; /* Прижимаем изображение к низу */
+    width: 4cm;  /* Фиксированная ширина */
+    height: 4cm; /* Фиксированная высота */
+}
+/* Анимация появления */
+.fade-in-item-left:nth-child(1) {
+    transition-delay: 0.2s;
+}
+.fade-in-item-left:nth-child(2) {
+    transition-delay: 0.4s;
+}
+.fade-in-item-left:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
+.fade-in-item-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-item-right {
+    opacity: 0;
+    transform: translateX(100px); /* Начальное положение справа */
+    transition: all 0.8s ease-out;
+}
+
+.fade-in-item-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Задержки для второй строки */
+.fade-in-item-right:nth-child(1) { transition-delay: 1.2s; }
+.fade-in-item-right:nth-child(2) { transition-delay: 1.4s; }
+.fade-in-item-right:nth-child(3) { transition-delay: 1.6s; }
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .stat-image {
+        width: 2.5cm;
+        height: 2.5cm;
+    }
+}
+
+/* Стили для hero-container */
+.section-spacer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*padding: 50px 0;*/
+    width: 100%;
+    padding: 20px 0 50px; /* Верх 20px, низ 50px */
+
+}
+
+.hero-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+
+}
+
+/*.hero-container ul {*/
+/*    list-style-type: none; !* Убираем стандартные маркеры *!*/
+
+/*}*/
+
+/*.hero-container li {*/
+/*    margin-bottom: 10px; !* межстрочные отступы *!*/
+/*    padding: 20px; !* Добавляем внутренние отступы *!*/
+/*}*/
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.hero-text {
+    font-weight: 700;
+    color: #6791bb;
+    width: 100%; /* На всю ширину (не 50% как в services) */
+    font-size: 26px;
+    text-align: center; /* Выравнивание по левому краю */
+    margin-top: -50px; /* Поднимаем список выше */
+    transition: all 0.3s ease;
+    list-style: none; /* Убираем стандартные маркеры */
+}
+
+.hero-text li {
+    padding: 8px 15px; /* Уменьшенные отступы */
+    margin-bottom: 1px; /* Уменьшенный межстрочный отступ */
+    line-height: 1; /* контролирует расстояние между строками внутри элемента */
+    background: rgba(252, 242, 203, 0.25); /* Для наглядности */
+    border-radius: 50px;
+}
+
+/* Анимации для вопроса Почему мы */
+.fade-in-delay {
+    transition-delay: 1.2s; /* Появляется после первого stats-container */
+}
+
+.fade-in-delay.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Адаптация */
+@media (max-width: 768px) {
+    .hero-container {
+        padding: 0 20px;
+    }
+
+    .section-spacer {
+        padding: 30px 0;
+    }
+    .hero-text {
+        gap: 10px;
+    }
+    .hero-text li {
+        font-size: 1rem;
+        padding: 6px 0;
+    }
+}
+
+.hello-message-container {
+    display: flex;
+    align-items: center;
+}
+
+.hello-message-item {
+    width: 30%;
+    min-width: 250px; /* Минимальная ширина для предотвращения сжатия */
+    display: grid;
+    grid-template-rows: auto auto 1fr; /* Три строки: title, value, image */
+    height: 500px;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-out;
+    align-items: center; /* Центрируем содержимое по вертикали */
+    justify-items: center; /* Центрируем содержимое по горизонтали */
+    gap: 15px; /* Равномерные отступы между элементами */
+}
+
+.hello-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
