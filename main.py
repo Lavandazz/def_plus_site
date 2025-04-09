@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from pages import main_pages
 
 from database.create_db import connect_db, close_db, init_db
-from admin_folder import admin, admin_workers
+from admin_folder import admin, admin_workers, admin_questions, admin_contacts
 
 
 @asynccontextmanager
@@ -22,7 +22,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")  # подк
 app.include_router(main_pages.router)
 app.include_router(admin.router)
 app.include_router(admin_workers.router)
-
+app.include_router(admin_questions.router)
+app.include_router(admin_contacts.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)

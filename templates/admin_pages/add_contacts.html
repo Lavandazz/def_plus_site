@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center mb-4">Добавить адрес</h1>
+<form action="/admin/save_add_contacts" method="post" class="border p-4 rounded shadow bg-light">
+
+    <div class="mb-3">
+        <label for="city" class="form-label">Город</label>
+        <input type="text" id="city" name="city" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="street" class="form-label">Улица</label>
+        <input type="text" id="street" name="street" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="house_number" class="form-label">Дом</label>
+        <input type="text" id="house_number" name="house_number" class="form-control" required>
+
+    <div class="mb-3">
+        <label for="office_number" class="form-label">Офис</label>
+        <input type="text" id="office_number" name="office_number" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="metro_station" class="form-label">Метро</label>
+        <input type="text" id="metro_station" name="metro_station" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Статус адреса (Основной/Дополнительный)</label>
+        <input type="text" id="description" name="description" class="form-control" required>
+
+    <button type="submit" class="btn btn-primary w-100">Добавить</button>
+</form>
+{% endblock %}

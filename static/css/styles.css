@@ -1,4 +1,24 @@
+:root {
+  font-size: 16px; /* Базовый размер */
+}
 
+@media (max-width: 1920px) {
+  :root {
+    font-size: 14px; /* Чуть меньше для больших экранов */
+  }
+}
+
+@media (max-width: 1200px) {
+  :root {
+    font-size: 16px; /* Стандартный размер */
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px; /* Чуть меньше для мобильных */
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -24,27 +44,59 @@
 /* Название компании + логотип */
 .logo-container {
     display: flex;
-    /*justify-content: center; !* Центрируем по горизонтали *!*/
+    justify-content: center; /* Центрируем по горизонтали */
     align-items: center; /* Центрируем по вертикали */
     position: absolute;
-    left:47%;
+    left:50%;
     transform: translateX(-50%); /* Центрирует логотип */
     height: 100%; /* Задаем высоту контейнера, равную высоте шапки */
+    pointer-events: none; /* Позволяет кликать сквозь логотип */
+    max-width: 40%; /* Ограничиваем максимальную ширину */
+}
+
+.logo-link {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    pointer-events: auto;
+}
+
+/* При наведении на лого - курсор "указатель" */
+.logo-link:hover {
+    cursor: pointer;
+}
+
+.logo-img {
+    max-height: 80%;
+    max-width: 100%;
+    /*pointer-events: none; !* Клики проходят СКВОЗЬ изображение *!*/
+}
+
+/* Делаем "дырку" для навигации */
+.nav {
+    position: relative;
+    z-index: 1002; /* Навигация ВЫШЕ логотипа */
 }
 
 /* Телефоны компании справа */
 .company-tel {
     flex-grow: 1; /* Позволяет названию занимать пространство */
-    margin-right: 5vw;
+    margin-right: 2vw;
     text-align: right;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
 }
 
-/*.logo {*/
-/*    height: 10vw;*/
-/*    width: auto;*/
-/*}*/
+.company-tel a {
+    text-decoration: none; /* убирает подчеркивание текста*/
+    color: #1f0101;
+}
+
+.company-tel a:hover {
+    color: #540707; /* Цвет при наведении */
+    text-decoration: none;
+    text-shadow: 0 10px 30px rgb(166, 186, 218);
+}
 
 /* Меню навигации */
 .nav ul {
@@ -66,7 +118,8 @@
 }
 
 .nav a:hover {
-    color: #007BFF;
+    color: #540707;
+    text-shadow: 0 10px 30px rgb(166, 186, 218);
 }
 
 /*!* Основной фон с градиентом *!*/
@@ -74,12 +127,12 @@
 .header {
     background-color: #eee9e9;
     color: #1f0101;
-    padding: 15px 30px;
+    padding: 1rem 2rem; /* Относительные единицы */ /*padding: 15px 30px;*/
     display: flex;
     align-items: center;
     justify-content: space-between; /* Навигация слева, логотип справа */
     gap: 20px;
-    font-size: 24px;
+    font-size: 1.5vw; /* Размер шрифта будет адаптироваться *//*font-size: 24px;*/
     font-weight: bold;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -91,34 +144,7 @@
     left: 0;
     z-index: 1000; /* Чтобы было поверх контента */
 }
-/*!* Убираем отступы и поля у всего документа *!*/
-/*html, body {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    min-height: 100vh; !* Гарантирует, что страница будет чуть больше высоты экрана *!*/
-/*}*/
-/*html {*/
-/*    height: 100%;*/
-/*    background: #F3FDFAAD; !* Цвет, который должен быть "под" градиентом *!*/
-/*    overflow-y: scroll; !* Всегда показывает скроллбар *!*/
-/*}*/
 
-/*body {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    padding-top: 80px !important; !* Жёстко задаём отступ для шапки *!*/
-/*    font-family: Arial, sans-serif;*/
-/*    min-height: 100vh;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-
-/*    !* Градиент теперь покрывает весь контент *!*/
-/*    background: linear-gradient(to bottom, #fcfdfc 0%, #fcfdfc 50%, #F3FDFAAD 100%);*/
-/*    background-repeat: no-repeat;*/
-/*    background-size: 100% auto;*/
-/*}*/
-/* Базовые стили документа */
 html {
     height: 90%;
     overflow-y: scroll; /* Постоянный скроллбар только здесь */
@@ -144,11 +170,12 @@ body {
     background: linear-gradient(to bottom, #fcfdfc 0%, #fcfdfc 50%, #F3FDFAAD 100%);
     background-attachment: fixed; /* Фиксируем градиент */
 }
+
 .content {
     flex-grow: 1;
     width: 100%;
     max-width: 1650px;
-    padding: 2cm;
+    padding: 2rem 5%;/*padding: 2cm;*/
     box-sizing: border-box;
 }
 
@@ -403,22 +430,22 @@ body {
     text-align: center; /* Выравнивает текст */
 }
 
-.service-block{
-    text-align: left;
-    width: 90%;
-    color: #333;
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 0 auto; /* Центрирует блок */
-    padding-top: 60px; /* Отступ вниз на высоту .header */
-}
+/*.service-block{*/
+/*    text-align: left;*/
+/*    width: 90%;*/
+/*    color: #333;*/
+/*    font-size: 1.5vw; !*font-size: 18px;*!*/
+/*    line-height: 1.5;*/
+/*    margin: 0 auto; !* Центрирует блок *!*/
+/*    padding-top: 60px; !* Отступ вниз на высоту .header *!*/
+/*}*/
 
 /* Стили для главной страницы index */
 .stats-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     padding: 50px 0;
 }
 
@@ -434,11 +461,11 @@ body {
     transition: all 0.8s ease-out;
     align-items: center; /* Центрируем содержимое по вертикали */
     justify-items: center; /* Центрируем содержимое по горизонтали */
-    gap: 15px; /* Равномерные отступы между элементами */
+    gap: 10px; /* Равномерные отступы между элементами 15*/
 }
 
 .stat-title {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: bold;
     color: #2c3e50;
     display: flex;
@@ -448,7 +475,7 @@ body {
 }
 
 .stat-value {
-    font-size: 30px;
+    font-size: 22px;
     color: #6791bb;
     font-weight: 700;
     align-self: start; /* Прижимаем к нижней границе ячейки */
@@ -458,13 +485,11 @@ body {
 }
 
 .stat-image {
-    /*width: 120px;*/
-    /*height: 120px;*/
     object-fit: contain;
     align-self: center; /* Центрируем изображение */
     margin-top: auto; /* Прижимаем изображение к низу */
-    width: 4cm;  /* Фиксированная ширина */
-    height: 4cm; /* Фиксированная высота */
+    width: 8rem; /* Вместо 4cm *//*width: 4cm;  !* Фиксированная ширина *!*/
+    height: 8rem;/*height: 4cm; !* Фиксированная высота *!*/
 }
 /* Анимация появления */
 .fade-in-item-left:nth-child(1) {
@@ -533,18 +558,8 @@ body {
 
 }
 
-/*.hero-container ul {*/
-/*    list-style-type: none; !* Убираем стандартные маркеры *!*/
-
-/*}*/
-
-/*.hero-container li {*/
-/*    margin-bottom: 10px; !* межстрочные отступы *!*/
-/*    padding: 20px; !* Добавляем внутренние отступы *!*/
-/*}*/
-
 .hero-image {
-    max-width: 100%;
+    max-width: 80vw;/*max-width: 100%;*/
     height: auto;
     object-fit: contain;
 }
@@ -553,7 +568,7 @@ body {
     font-weight: 700;
     color: #6791bb;
     width: 100%; /* На всю ширину (не 50% как в services) */
-    font-size: 26px;
+    font-size: 22px;
     text-align: center; /* Выравнивание по левому краю */
     margin-top: -50px; /* Поднимаем список выше */
     transition: all 0.3s ease;
@@ -617,7 +632,7 @@ body {
 }
 
 .hello-image {
-    max-width: 100%;
+    max-width: 80vw;/*max-width: 100%;*/
     height: auto;
     object-fit: contain;
 }

@@ -17,13 +17,12 @@ UPLOAD_DIR = "static/workers_photo"  # Папка для хранения фот
 
 
 @router.get("/admin/get_workers", response_class=HTMLResponse, tags=["workers_admin"])
-async def admin_workers_get(request: Request,
-                            ):
+async def admin_workers_get(request: Request, username: str = Depends(get_current_admin)):
     """ Страница админки с данными о сотрудниках"""
     workers = await WorkerModel.all()
-    for worker in workers:
-        print(worker.photo)  # Посмотрим, что хранится в БД
-    return templates.TemplateResponse('workers.html', {"request": request, 'workers': workers})
+    # for worker in workers:
+    #     print(worker.photo)  # Посмотрим, что хранится в БД
+    return templates.TemplateResponse('workers.html', {"request": request, 'workers': workers, "username": username})
 
 
 @router.get('/admin/add_worker', response_class=HTMLResponse, tags=["workers_admin"])
@@ -104,7 +103,7 @@ async def admin_dashboard(worker_id: int, name: str = Form(...),
 
 
 @router.post('/admin/delete_worker/{worker_id}', response_class=HTMLResponse, tags=["workers_admin"])
-async def admin_delete_worker(worker_id: int):
+async def admin_delete_worker(worker_id: int, username: str = Depends(get_current_admin)):
     """ Удаление сотрудника """
     try:
         worker = await WorkerModel.get(id=worker_id)  # Ищем сотрудника по id
@@ -115,4 +114,4 @@ async def admin_delete_worker(worker_id: int):
             return RedirectResponse(url='/admin/get_workers', status_code=303)  # Перенаправляем на страницу с сотрудниками
         return {"error": "Услуга не найдена"}  # Если услуга не найдена
     except Exception as e:
-        return {"error": f"Произошла ошибка: {e}"}
+        return {"error": f"Произошла ошибка удаления сотрудника: {e}"}

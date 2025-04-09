@@ -5,7 +5,8 @@
         {% for service in services %}
         <div class="service-item fade-in {% if loop.index % 2 == 0 %}reverse{% endif %}">
             <div class="service-info">
-                <h2>{{ service.title }}</h2>
+                <h3>{{ service.title }}</h3>
+                <br>
                 <p>{{ service.description }}</p>
             </div>
             <div class="service-image">

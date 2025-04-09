@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты{% endblock %}
+{% block extra_styles %}
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+               /* Стиль для столбца "О работнике" */
+        td:nth-child(2) {
+            width: 40%;
+            min-width: 300px;
+            max-width: 500px;
+            word-wrap: break-word;
+            text-align: left; /* можно выровнять текст по левому краю */
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+<a href="/admin/add_phone" class="add-service-btn">Добавить номер телефона</a>
+<br>
+<br>
+<a href="/admin/add_contact" class="add-service-btn">Добавить адрес</a>
+ <h1>Список Контактов</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Номер телефона</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in phones %}
+            <tr>
+                <td>{{ item.phone }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<br>
+    <table>
+        <thead>
+            <tr>
+                <th>Город</th>
+                <th>Улица</th>
+                <th>Дом</th>
+                <th>Офис</th>
+                <th>Станция метро</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for address in addresses %}
+            <tr>
+                <td>{{ address.city }}</td>
+                <td>{{ address.street }}</td>
+                <td>{{ address.house_number }}</td>
+                <td>{{ address.office_number }}</td>
+                <td>{{ address.metro_station }}</td>
+                <td>{{ address.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+{% endblock %}

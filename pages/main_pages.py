@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from database.contacts import contact_dict
-from database.models_db import ServiceTextModel, WorkerModel
+from database.models_db import ServiceTextModel, WorkerModel, QuestionAndAnswerModel
 from database.contacts import key_features, the_question_why_are_we, list_of_question_why_are_we
 
 router = APIRouter()
@@ -29,6 +29,16 @@ async def about(request: Request):
     return jinja_env.TemplateResponse("about.html", {"request": request,
                                                      "title": "О компании",
                                                      "workers": workers})
+
+
+@router.get("/questions", response_class=HTMLResponse, tags=["home"])
+async def questions(request: Request):
+    """ Страница с вопросами и ответами """
+    questions = await QuestionAndAnswerModel.all()
+    title = "Вопросы и ответы банкротство физических лиц"
+    return jinja_env.TemplateResponse("questions.html", {"request": request,
+                                                         "questions": questions,
+                                                         "title": title})
 
 
 @router.get("/services", response_class=HTMLResponse, tags=["home"])

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<main class="about-container">
+    {% for item in questions %}
+    <div class="about-item fade-in">
+        <div class="about-content">
+            <h2>{{ item.question }}</h2>
+            <p>{{ item.answer }}</p>
+            <br>
+            {% if item.article is not none %}
+            <p>🔗<i>{{ item.article }}</i></p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</main>
+
+{% endblock %}

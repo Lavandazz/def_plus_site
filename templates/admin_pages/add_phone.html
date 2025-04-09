@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center mb-4">Добавить номер телефона</h1>
+<form action="/admin/save_add_contacts" method="post" class="border p-4 rounded shadow bg-light">
+
+    <div class="mb-3">
+        <label for="phone" class="form-label">Телефон</label>
+        <input type="text" id="phone" name="phone" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Добавить</button>
+</form>
+{% endblock %}

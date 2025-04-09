@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Вопросы - Ответы{% endblock %}
+{% block extra_styles %}
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+               /* Стиль для столбца "О работнике" */
+        td:nth-child(2) {
+            width: 40%;
+            min-width: 300px;
+            max-width: 500px;
+            word-wrap: break-word;
+            text-align: left; /* можно выровнять текст по левому краю */
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+<a href="/admin/add_question" class="add-service-btn">Добавить вопрос</a>
+ <h1>Список вопросов</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Вопрос</th>
+                <th>Ответ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in questions %}
+            <tr>
+                <td>{{ item.question }}</td>
+                <td>{{ item.answer }}</td>
+                <td>{{ item.article }}</td>
+                <td>
+                    <a href="/admin/edit_question/{{ item.id }}" class="btn btn-warning btn-sm">Редактировать</a>
+                </td>
+                <td>
+                    <form action="/admin/delete_question/{{ item.id }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+{% endblock %}
