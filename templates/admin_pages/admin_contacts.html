@@ -37,32 +37,46 @@
 <a href="/admin/add_phone" class="add-service-btn">Добавить номер телефона</a>
 <br>
 <br>
-<a href="/admin/add_contact" class="add-service-btn">Добавить адрес</a>
  <h1>Список Контактов</h1>
     <table>
         <thead>
             <tr>
                 <th>Номер телефона</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for item in phones %}
             <tr>
-                <td>{{ item.phone }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td>
+                    <form action="/admin/delete/{{ item.id }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="/admin/edit_phone/{{ item.id }}" class="btn btn-warning btn-sm">Редактировать</a>
+                </td>
             </tr>
             {% endfor %}
+
         </tbody>
     </table>
 <br>
+    <a href="/admin/add_contact" class="add-service-btn">Добавить адрес</a>
     <table>
         <thead>
             <tr>
                 <th>Город</th>
                 <th>Улица</th>
                 <th>Дом</th>
+                <th>Строение/Корпус</th>
                 <th>Офис</th>
                 <th>Станция метро</th>
                 <th>Описание</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -71,9 +85,18 @@
                 <td>{{ address.city }}</td>
                 <td>{{ address.street }}</td>
                 <td>{{ address.house_number }}</td>
+                <td>{{ address.building }}</td>
                 <td>{{ address.office_number }}</td>
                 <td>{{ address.metro_station }}</td>
                 <td>{{ address.description }}</td>
+                <td>
+                    <a href="/admin/edit_contact/{{ address.id }}" class="btn btn-warning btn-sm">Редактировать</a>
+                </td>
+                <td>
+                    <form action="/admin/delete/{{ address.id }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

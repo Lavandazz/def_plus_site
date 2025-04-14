@@ -2,7 +2,7 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
     <main class="service-container">
-        {% for service in services %}
+        {% for service in all_services %}
         <div class="service-item fade-in {% if loop.index % 2 == 0 %}reverse{% endif %}">
             <div class="service-info">
                 <h3>{{ service.title }}</h3>

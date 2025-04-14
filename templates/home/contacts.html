@@ -14,18 +14,22 @@
         <h2>Как к нам проехать</h2>
     </div>
     <div class="contacts-container">
-        {% for status, address in contact_dict.items() %}
+        {% for address in address_dict %}
         <div class="contact-item fade-in">
             <div class="about-content">
-                <p class="contact-address">{{ status }} адрес: {{ address }}</p>
+                <p class="contact-address">{{ address.description }}: г. {{ address.city }},
+                ул. {{ address.street }}, д. {{ address.house_number }}, {{ address.building }},
+                оф. {{ address.office_number }}, м. {{ address.metro_station }}</p>
             </div>
 
             <div class="contact-address">
-                <a href="https://yandex.ru/maps/?text={{ address }}" target="_blank">
+                <a href="https://yandex.ru/maps/?text=
+                {{ address.city }}/{{ address.street }}/{{ address.house_number }}/{{ address.building }}" target="_blank">
                     <button class="map-button">Открыть на карте</button>
                 </a>
                 <iframe
-                    src="https://yandex.ru/map-widget/v1/?text={{ address }}"
+                    src="https://yandex.ru/map-widget/v1/?text=
+                    {{ address.city }}/{{ address.street }}/{{ address.house_number }}/{{ address.building }}"
                     frameborder="0"
                     allowfullscreen>
                 </iframe>

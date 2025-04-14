@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center mb-4">Редактирование данных</h1>
+
+<form action="/admin/save_edit_contacts/{{ address.id }}" method="post" class="border p-4 rounded shadow bg-light"
+    enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="city" class="form-label">Город</label>
+        <input type="text" id="city" name="city" class="form-control" value="{{ address.city }}" placeholder="Название Города" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="street" class="form-label">Улица</label>
+        <input type="text" id="street" name="street" class="form-control" value="{{ address.street }}" placeholder="Название улицы" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="house_number" class="form-label">Дом</label>
+        <input type="text" id="house_number" name="house_number" class="form-control" value="{{ address.house_number }}" placeholder="Номер дома" required>
+    </div>
+
+     <div class="mb-3">
+        <label for="building" class="form-label">Строение/Корпус</label>
+        <input type="text" id="building" name="building" class="form-control" value="{{ address.building }}" placeholder="Строение/Корпус" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="office_number" class="form-label">Офис</label>
+        <input type="text" id="office_number" name="office_number" value="{{ address.office_number }}" placeholder="Номер офиса" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="metro_station" class="form-label">Метро</label>
+        <input type="text" id="metro_station" name="metro_station" class="form-control" value="{{ address.metro_station }}" placeholder="Станция метро" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Статус адреса (Основной/Дополнительный)</label>
+            <select id="description" name="description" class="form-control" required>
+                <option value="">Выберите статус адреса</option>
+                <option value="Основной адрес">Основной адрес</option>
+                <option value="Дополнительный адрес">Дополнительный адрес</option>
+            </select>
+    </div>
+    <button type="submit" class="btn btn-primary w-20">Сохранить изменения</button>
+    <a href="/admin/contacts" class="btn btn-info w-20">Отмена</a>
+</form>
+{% endblock %}
