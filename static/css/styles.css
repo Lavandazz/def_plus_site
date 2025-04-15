@@ -124,6 +124,32 @@
     text-shadow: 0 10px 30px rgb(233, 239, 250);
 }
 
+/*Стили ul-li*/
+ul.custom-list {
+    /* Убираем стандартные маркеры */
+    list-style: none;
+    /* Задаем отступ слева (как у основного текста) */
+    padding-left: 1em;
+    /* Убираем внешние отступы */
+    margin: 0;
+}
+
+ul.custom-list li {
+    /* Добавляем кастомный маркер (черточку) */
+    position: relative;
+    padding-left: 1.5em; /* Отступ для черточки */
+    margin-bottom: 0.5em; /* Отступ между пунктами */
+    line-height: 1.5; /* Межстрочный интервал */
+}
+
+ul.custom-list li::before {
+    /* Создаем черточку с помощью псевдоэлемента */
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #333; /* Цвет черточки */
+}
+
 /*!* Основной фон с градиентом *!*/
 /* Шапка */
 .header {
