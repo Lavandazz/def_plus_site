@@ -65,7 +65,7 @@ async def admin_panel(request: Request, access_token: str = Cookie(None)):  # з
         return RedirectResponse(url="/admin/login")  # Если токен недействителен, выкидываем
 
     return templates.TemplateResponse("admin_dashboard.html", {
-        "request": request, "username": username,"active_page": "services"
+        "request": request, "username": username, "active_page": "services"
     })
 
 
@@ -87,14 +87,19 @@ async def admin_dashboard(request: Request, username: str = Depends(get_current_
 
 
 @router.post('/admin_dashboard/add', response_class=HTMLResponse, tags=["admin"])
-async def admin_dashboard_add(title: str = Form(...), description: str = Form(...)):
+async def admin_dashboard_add(title: str = Form(...),
+                              description: str = Form(...),
+                              username: str = Depends(get_current_admin)):
     """ Добавление услуги """
-    await ServiceTextModel.create(title=title, description=description)
+    await ServiceTextModel.create(title=title,
+                                  description=description)
     return RedirectResponse(url='/admin/services', status_code=303)
 
 
 @router.get('/admin/edit_service/{service_id}', response_class=HTMLResponse, tags=["admin"])
-async def admin_dashboard_edit(request: Request, service_id: int, username: str = Depends(get_current_admin)):
+async def admin_dashboard_edit(request: Request,
+                               service_id: int,
+                               username: str = Depends(get_current_admin)):
     """ Редактирование услуг """
     service = await ServiceTextModel.get_or_none(id=service_id)
     if not service:
@@ -105,7 +110,9 @@ async def admin_dashboard_edit(request: Request, service_id: int, username: str 
 
 
 @router.post('/admin/save_edit_service/{service_id}', response_class=HTMLResponse, tags=["admin"])
-async def admin_dashboard_edit(service_id: int, title: str = Form(...), description: str = Form(...),
+async def admin_dashboard_edit(service_id: int,
+                               title: str = Form(...),
+                               description: str = Form(...),
                                username: str = Depends(get_current_admin)):
     """ Редактирование услуг """
     service = await ServiceTextModel.get_or_none(id=service_id)

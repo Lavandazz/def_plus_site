@@ -262,6 +262,41 @@ body {
         max-width: 100%; /* На всю ширину */
     }
 }
+/* стиль выделения текста */
+.warning {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+/* стиль выделения текста */
+.statistics {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+/* Стили для цен */
+.services-table table {
+    margin: 20px 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+.services-table th {
+    background-color: #2980b9;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+.services-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+.services-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
 
 /* Стили для страницы services*/
 .service-container {

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, FastAPI
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -29,3 +29,20 @@ async def main_points_procedure(request: Request):
                                                                        "title": title,
                                                                        "keywords": keywords,
                                                                        "description": description})
+
+
+@router.get("/применение-закона-о-банкротстве", response_class=HTMLResponse, tags=["other pages"])
+async def points_procedure(request: Request):
+    """ Страница Как объявить себя банкротом"""
+    title ='Банкротство физических лиц, юридические услуги по банкротству'
+    return jinja_env.TemplateResponse("other_pages/points_procedure.html", {"request": request,
+                                                                            "title": title})
+
+
+@router.get("/цены-на-услуги-банкротства")
+async def prices_procedure(request: Request):
+    """ Страница с ценами """
+    title = 'Цены на юридические услуги по банкротству'
+    return jinja_env.TemplateResponse("other_pages/prices.html", {"request": request,
+                                                                            "title": title})
+
