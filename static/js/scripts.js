@@ -22,7 +22,35 @@ document.addEventListener("DOMContentLoaded", function() {
                 item.classList.add('visible');
             }, 1000 + 300 * index);
         });
+
     }
+        // Бургер-меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav');
+
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+
+                // Блокировка скролла при открытом меню
+                if (nav.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Закрытие меню при клике на пункт
+            const navLinks = document.querySelectorAll('.nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
 
     // Скролл-эффект для других страниц
     const fadeInElements = document.querySelectorAll(".fade-in");

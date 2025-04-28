@@ -19,18 +19,18 @@
     <script src="/static/js/swiper.js" defer></script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!--  Для отображения на мобильных  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <header class="header">
-        <nav class="nav">
-            <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/legalservices">Услуги</a></li>
-                <li><a href="/about">Компания</a></li>
-                <li><a href="/questions">Вопросы</a></li>
-                <li><a href="/contacts">Контакты</a></li>
-            </ul>
-        </nav>
+
+        <!-- Кнопка бургер-меню -->
+        <button class="menu-toggle" aria-label="Меню">
+            <span class="hamburger"></span>
+        </button>
+
         <div class="logo-container">
             <a href="/" class="logo-link">
                 <img src="https://x-lines.ru/letters/i/cyrillicscript/0813/09093f/34/0/4nmpbqgtomeaaegos8emmwfzrdemjwf64n77bc6oz5emr.png"
@@ -38,6 +38,15 @@
                      class="logo-img">
             </a>
         </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/legalservices">Услуги</a></li>
+                <li><a href="/about">Компания</a></li>
+                <li><a href="/questions">Вопросы</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
 
         <div class="company-tel">
             <h2><a href="/contacts">+7 (977) 803-48-97</a></h2>

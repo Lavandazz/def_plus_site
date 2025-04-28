@@ -1,24 +1,16 @@
 :root {
   font-size: 16px; /* Базовый размер */
 }
-
 @media (max-width: 1920px) {
-  :root {
-    font-size: 14px; /* Чуть меньше для больших экранов */
-  }
+  :root {font-size: 14px; /* Чуть меньше для больших экранов */}
+}
+@media (min-width: 768px) {
+  :root { font-size: 16px; }
+}
+@media (min-width: 1200px) {
+  :root { font-size: 18px; }
 }
 
-@media (max-width: 1200px) {
-  :root {
-    font-size: 16px; /* Стандартный размер */
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    font-size: 14px; /* Чуть меньше для мобильных */
-  }
-}
 * {
   margin: 0;
   padding: 0;
@@ -54,7 +46,15 @@
     pointer-events: none; /* Позволяет кликать сквозь логотип */
     max-width: 40%; /* Ограничиваем максимальную ширину */
 }
-
+@media (max-width: 768px) {
+  .logo-container {
+    max-width: 50%;
+    height: auto;
+  }
+  .logo-img {
+    max-height: 30px;
+  }
+}
 
 .logo-link {
     display: flex;
@@ -160,7 +160,7 @@ ul.custom-list li::before {
     align-items: center;
     justify-content: space-between; /* Навигация слева, логотип справа */
     gap: 20px;
-    font-size: 1.5vw; /* Размер шрифта будет адаптироваться *//*font-size: 24px;*/
+    font-size: 1rem; /* Размер шрифта будет адаптироваться *//*font-size: 24px;*/
     font-weight: bold;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -517,15 +517,6 @@ body {
     text-align: center; /* Выравнивает текст */
 }
 
-/*.service-block{*/
-/*    text-align: left;*/
-/*    width: 90%;*/
-/*    color: #333;*/
-/*    font-size: 1.5vw; !*font-size: 18px;*!*/
-/*    line-height: 1.5;*/
-/*    margin: 0 auto; !* Центрирует блок *!*/
-/*    padding-top: 60px; !* Отступ вниз на высоту .header *!*/
-/*}*/
 
 /* Стили для главной страницы index */
 .stats-container {
@@ -722,4 +713,155 @@ body {
     max-width: 80vw;/*max-width: 100%;*/
     height: auto;
     object-fit: contain;
+}
+
+/* Стили для бургер-меню */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1003;
+    /*margin-right: 15px;*/
+    /*order: 1; !* Первый элемент в flex-контейнере *!*/
+    margin-right: auto; /* Прижимаем к левому краю */
+    margin-left: 15px; /* Отступ от края */
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger:before,
+.hamburger:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger:before {
+    top: -8px;
+}
+
+.hamburger:after {
+    bottom: -8px;
+}
+
+@media (max-width: 1200px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        order: 1;
+    }
+
+    .logo-container {
+        order: 2;
+        position: static;
+        transform: none;
+        margin: 0 auto;
+        max-width: none;
+    }
+
+    .nav {
+        position: absolute; /* Меняем на absolute */
+        top: 100%; /* Позиционируем прямо под шапкой */
+        left: 15px; /* Выравниваем по левому краю с отступом */
+        width: 300px;
+        display: none;
+        margin-top: 5px; /* Уменьшаем отступ сверху */
+        background: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-left: 0; /* Убираем отрицательный отступ */
+        z-index: 1002; /* Убедимся, что выше других элементов */
+    }
+
+    /* Все остальные ваши стили остаются без изменений */
+    .nav.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .nav-list {
+        flex-direction: column !important;
+        gap: 0 !important;
+        padding: 10px 0 !important;
+    }
+
+    .nav-list li {
+        width: 100%;
+        padding: 12px 20px !important;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-list li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-list a {
+        display: block;
+        width: 100%;
+        font-size: 16px !important;
+        color: #333 !important;
+    }
+    .nav ul li:hover {
+        /*background-color: #f0f0f0; !* Светло-серый фон *!*/
+        text-decoration-color: #540707;
+    }
+
+    .nav a:hover {
+        color: #540707 !important; /* Фирменный красный */
+        transform: translateX(5px); /* Небольшой сдвиг вправо */
+        text-shadow: none !important; /* Убираем тень если была */
+    }
+
+    /* Дополнительно можно добавить плавность */
+    .nav ul li {
+        transition: background-color 0.3s ease;
+    }
+    .nav ul li:hover {
+        background: linear-gradient(90deg, rgba(84,7,7,0.1) 0%, rgba(255,255,255,0) 100%);
+    }
+    .nav a {
+        transition: all 0.3s ease !important;
+    }
+
+    .company-tel {
+        order: 3;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .menu-toggle.active .hamburger {
+        background: transparent;
+    }
+
+    .menu-toggle.active .hamburger:before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    .menu-toggle.active .hamburger:after {
+        transform: rotate(-45deg);
+        bottom: 0;
+    }
+
+    body {
+        padding-top: 80px !important;
+    }
 }
